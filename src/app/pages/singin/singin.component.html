@@ -1,0 +1,98 @@
+<div class="login-container">
+  <div class="logo">NBR LOGIN</div>
+  
+
+  <div class="login-form">
+
+    <form class="example-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <mat-label>Username</mat-label>
+          <input 
+            formControlName="username"
+            type="text"
+            name="username"
+            matInput 
+            placeholder="Ex. something secure"
+          />
+          <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+          <!-- <mat-error *ngIf="loginForm.hasError('username')">
+            Username is <strong>required</strong>
+          </mat-error> -->
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <mat-label>Password</mat-label>
+          <input 
+            formControlName="password"
+            type="password"
+            name="password"
+            matInput 
+            
+            placeholder="Ex. something secure"
+            
+          />
+          <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+          <mat-error *ngIf="loginForm.hasError('username')">
+            Password is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="btn-container">
+        <div class="error">{{ errorMsg }}</div>
+
+        <!-- <app-button
+        [label]="btnLabel"
+        [btnColor]="btnColor"
+        ></app-button> -->
+
+        <!-- <button class="btn btn-dark" (click)="login()">Login</button> -->
+        <!-- <button class="btn btn-dark" type="submit">Login</button> -->
+<!-- <app-button
+        [label]="buttonLabel"
+        [color]="buttonColor" 
+        [type]="buttonType"
+      ></app-button> -->
+      <app-button
+      [label]="btnLabel"
+      [color]="btnColor"
+      [type]="btnType"
+      ></app-button>
+
+      </div>
+
+    </form>
+    
+
+    <!-- <form [formGroup]="loginForm">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input 
+          formControlName="username"
+          type="text"
+          class="form-control"
+          name="username"
+        />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          class="form-control"
+          [(ngModel)]="password"
+        />
+      </div>
+      <div class="btn-container">
+        <div class="error">{{ errorMsg }}</div>
+        <button class="btn btn-dark" (click)="login()">Login</button>
+      </div>
+        
+    </form> -->
+
+    
+  </div>
+</div>
