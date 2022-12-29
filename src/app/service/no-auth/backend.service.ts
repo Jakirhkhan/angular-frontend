@@ -1,3 +1,4 @@
+import { CloseScrollStrategy } from '@angular/cdk/overlay';
 import { StickyDirection } from '@angular/cdk/table';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -14,14 +15,14 @@ export class BackendService {
   private url : string = config.apiUrl;
   constructor(private http: HttpClient) {}
 
-  getTaxPayers(): Observable<TaxPayers[]>{
-    return this.http.get<TaxPayers[]>(this.url)
+  getTaxPayers(path : string = ''): Observable<any[]>{
+    return this.http.get<any[]>(this.url+path)
   }
-}
 
-export interface TaxPayers{
-  id: string,
-  tin: string,
-  nid:string,
-  zone:string
+
+  getTaxPayer(path : string = ''): Observable<any[]>{
+    console.log("Api url:"+this.url+path);
+    return this.http.get<any[]>(this.url+path)
+  }
+  
 }

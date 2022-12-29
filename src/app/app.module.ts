@@ -15,6 +15,8 @@ import { ButtonComponent } from './uitools/button/button.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { GithubUsersComponent } from './pages/github-users/github-users/github-users.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TaxpayersComponent } from './pages/taxpayers/taxpayers.component';
+import { ViewComponent } from './pages/taxpayers/view/view.component';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { HttpClientModule } from '@angular/common/http';
     SignupComponent,
     ButtonComponent,
     ProfileComponent,
-    GithubUsersComponent
+    GithubUsersComponent,
+    TaxpayersComponent,
+    ViewComponent
   ],
   imports: [
     BrowserModule,
