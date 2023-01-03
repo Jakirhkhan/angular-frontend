@@ -1,0 +1,9 @@
+.footer-container{
+    background-color: #43A047;
+    color: #fff;
+}
+
+.footer-container .copyright i{
+    text-align: center;
+    vertical-align: text-top;
+}
