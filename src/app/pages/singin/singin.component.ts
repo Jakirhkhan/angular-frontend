@@ -2,6 +2,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/service/auth/auth.service';
+import { StorageService } from 'src/app/service/auth/storage.service';
+import { BackendService } from 'src/app/service/no-auth/backend.service';
 
 
 export class LoginErrorStateMatcher implements ErrorStateMatcher {
@@ -38,27 +41,52 @@ export class SinginComponent {
   matcher = new LoginErrorStateMatcher();
 
   constructor(
-    // private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private loginService: BackendService,
+    private authService: AuthService,
+    private storageService: StorageService
   ){
   }
 
   ngOnInit(): void {
     // throw new Error('Method not implemented.');
-
+    
   }
 
 
   onSubmit(){
+     if(this.loginForm.valid){
 
-    console.log(this.loginForm);
+      this.loginService
+      .signinTaxPayer(this.loginForm.value)
+      .subscribe(data => {
+        const token = data?.token;
+        const roles = data?.roles;
 
-    console.log('form values', this.loginForm.value);
+        console.log("data", data);
+        this.storageService.set("token", token);
 
+        this.storageService.set("roles", roles);
+
+        // redirect to home
+        //this.router.navigate(["/profile"]);
+
+        let isRoled: boolean = false;
+
+        for (var role of roles) {
+          if ( role === "ROLE_ADMIN"){
+            isRoled = true;
+            this.router.navigate(["/github-user"])
+          }
+        }
+        if(!isRoled){
+          this.router.navigate(["/taxpayers"]);
+        }
+
+      });
+    }
   }
 
   login() {
-
-    
   }
 }

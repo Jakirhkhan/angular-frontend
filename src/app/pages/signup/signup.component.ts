@@ -1,35 +1,62 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/service/auth/auth.service';
+import { BackendService } from 'src/app/service/no-auth/backend.service';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
+
 export class SignupComponent {
 
-  fname = "";
-  lname = "";
-  address = "";
-  email = "";
-  dob = "";
-  username = "";
-  password = "";
-  errorMsg = "";
 
-  register() {
-    if (this.username.trim().length === 0) {
-      this.errorMsg = "Username is required";
-    } else if (this.password.trim().length === 0) {
-      this.errorMsg = "Password is required";
-    } else {
-      this.errorMsg = "";
-      // let res = this.auth.login(this.username, this.password);
-      // if (res === 200) {
-      //   this.router.navigate(['home']);
-      // }
-      // if (res === 403) {
-      //   this.errorMsg = "Invalid Credentials";
-      // }
-    }
+  buttonLabel: string = "Signup";
+  buttonColor: string = "primary";
+  buttonType: string = "submit";
+
+  constructor(
+    private signupService: BackendService,
+    private authService: AuthService,
+    private router: Router
+  ){
   }
+
+  signupForm = new FormGroup(
+    {
+      "firstName": new FormControl('', Validators.required),
+      "lastName": new FormControl(''),
+      "tin": new FormControl(''),
+      "nid": new FormControl(''),
+      "gender": new FormControl(''),
+      "userStatus": new FormControl(''),
+      "email": new FormControl(''),
+      "zone": new FormControl(''),
+      "circle": new FormControl(''),
+      "username": new FormControl('', Validators.required),
+      "password": new FormControl('', Validators.required),
+    }
+  );
+  
+  onSubmit(){
+    // console.log(this.signupForm)
+      console.log(this.signupForm.value)
+    if(this.signupForm.valid){
+      
+     this.signupService
+     .signupTaxPayer(this.signupForm.value)
+     .subscribe(data => {
+       
+       console.log("data", data);
+       
+
+       //redirect to login
+       this.router.navigate(["/signin"]);
+     });
+   }
+ }
+ register(){}
+
 }

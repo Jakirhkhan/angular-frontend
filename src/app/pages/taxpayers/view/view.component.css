@@ -1,3 +1,12 @@
+.content-box{
+  width: 100%;
+  margin: 0;
+}
+
+.content-box .example-card{
+  width: 90%;
+  margin: 0 5%;
+}
 .example-card {
     max-width: 400px;
   }
