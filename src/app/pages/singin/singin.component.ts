@@ -68,15 +68,15 @@ export class SinginComponent {
         // redirect
         let isRoled: boolean = false;
 
-        // for (var role of roles) {
-        //   if ( role === "ROLE_ADMIN"){
-        //     isRoled = true;
-        //     this.router.navigate(["/github-user"])
-        //   }
-        // }
-        // if(!isRoled){
-        //   this.router.navigate(["/taxpayers"]);
-        // }
+        for (var role of roles) {
+          if ( role === "ROLE_ADMIN"){
+            isRoled = true;
+            this.router.navigate(["/github-user"])
+          }
+        }
+        if(!isRoled){
+          this.router.navigate(["/taxpayers"]);
+        }
 
       });
     }

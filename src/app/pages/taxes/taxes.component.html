@@ -1,0 +1,45 @@
+<div class="form-container">
+    <mat-toolbar>
+        <span>Taxpayer Information</span>
+    </mat-toolbar>
+    <mat-card class="signup">
+        <mat-card-content>
+            <form [formGroup]="taxCalculationForm" (ngSubmit)="onSubmit()">
+
+                <!-- <input formControlName="tin" type="hidden" value="{{tin}}"/> -->
+                
+                <mat-form-field appearance="fill" class="full-width">
+                <mat-label>--Seletc--</mat-label>
+                <mat-select formControlName="incomeYear"> 
+                    <mat-option value="2022-23">2022-23</mat-option>
+                    <mat-option value="2023-24">2023-24</mat-option>
+                </mat-select>
+                </mat-form-field>
+    
+                <mat-form-field class="full-width">
+                    <mat-label>Salary</mat-label>
+                    <input matInput placeholder="Enter Your Total Salary" 
+                    formControlName="salary">
+                </mat-form-field>
+               
+                <app-button
+                    [label]="buttonLabel"
+                    [color]="buttonColor"
+                    [type]="buttonType"
+                    >
+                </app-button>
+            
+    
+            </form>
+    
+        </mat-card-content>
+    
+        <mat-card-actions>
+        
+            <!-- REGISTER BUTTON -->
+            <!-- <button mat-raised-button (click)="register()" color="primary">REGISTER</button> -->
+    
+        </mat-card-actions>
+    
+    </mat-card>
+</div>

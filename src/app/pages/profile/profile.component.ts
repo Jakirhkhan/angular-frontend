@@ -13,6 +13,13 @@ export class ProfileComponent implements OnInit{
   private url : string = config.apiUrl;
   id: any;
   taxPayer: any;
+
+  //Button Property
+  btnLabel : string = "Calculate Tax";
+  btnColor : string = "primary";
+  btnType : string = "submit";
+
+
   constructor(
     private storageService: StorageService,
     private httpClientWithAuthorization: HttpClientWithAuthorization,

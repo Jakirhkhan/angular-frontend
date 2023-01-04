@@ -8,8 +8,13 @@
       <p>Circle-{{taxPayer?.circle}}, Zone- {{taxPayer?.zone}}</p>
     </mat-card-content>
     <mat-card-actions>
-      <a routerLink="/taxes/{{taxPayer?.tin}}">
-        <button mat-button>Calculate Tax</button>
+      <a routerLink="/taxes/{{taxPayer?.tin}}" >
+        <app-button
+          [label]="btnLabel"
+          [color]="btnColor"
+          [type]="btnType"
+        ></app-button>
+      
       </a>
       <button mat-button>SHARE</button>
     </mat-card-actions>

@@ -6,6 +6,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { GithubUsersComponent } from './pages/github-users/github-users/github-users.component';
 import { TaxpayersComponent } from './pages/taxpayers/taxpayers.component';
 import { ViewComponent } from './pages/taxpayers/view/view.component';
+import { TaxesComponent } from './pages/taxes/taxes.component';
 
 const routes: Routes = [
   { path: 'sign-in', component: SinginComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'github-user', component: GithubUsersComponent },
   { path: 'taxpayers', component: TaxpayersComponent },
   { path: 'taxpayers/:id', component: ViewComponent },
+  { path: 'taxes/:tin', component: TaxesComponent}
 ];
 
 @NgModule({
