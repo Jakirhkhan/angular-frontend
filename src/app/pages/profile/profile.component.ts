@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { config } from 'src/app/config';
+import { HttpClientWithAuthorization } from 'src/app/service/auth/http-client-with-authorization';
+import { StorageService } from 'src/app/service/auth/storage.service';
 
 @Component({
   selector: 'app-profile',
@@ -8,37 +10,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit{
-  
-  hide = true;
-
-  label : string = "Submit";
-  color : string = "primary";
-  type : string = "submit";
-  disabled: string = "disabled"
-
-  profileForm = new FormGroup({
-    name: new FormControl('',Validators.required),
-    address : new FormControl('',Validators.required),
-    username : new FormControl('',[Validators.required,Validators.minLength(6),Validators.maxLength(12)]),
-    // username : new FormControl('', [Validators.required,Validators.minLength(6)]),
-    password : new FormControl('',[Validators.required,Validators.minLength(6),Validators.maxLength(12)])
-  });
-
+  private url : string = config.apiUrl;
+  id: any;
+  taxPayer: any;
   constructor(
-    // private auth: AuthService,
-    private router: Router
+    private storageService: StorageService,
+    private httpClientWithAuthorization: HttpClientWithAuthorization,
+    private route: ActivatedRoute,
   ){
+    
   }
   ngOnInit(): void {
-    //this.buttonColor = "primary";
-    //this.buttonLabel = "Login";
-    //throw new Error('Method not implemented.');
-  }
-
-  onSubmit(){
-    console.log("fasdfsadf");
-    console.log(this.profileForm);
-    console.log(this.profileForm.get('name'));
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.httpClientWithAuthorization.get<any>(this.url+'/taxpayers/'+this.id)
+    .subscribe(data=>{
+      console.log(data);
+      this.taxPayer = data;
+      console.log(this.taxPayer?.name);
+    });
   }
   
 }

@@ -10,7 +10,7 @@ import { ViewComponent } from './pages/taxpayers/view/view.component';
 const routes: Routes = [
   { path: 'sign-in', component: SinginComponent },
   { path: 'sign-up', component: SignupComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile/:id', component: ProfileComponent },
   { path: 'github-user', component: GithubUsersComponent },
   { path: 'taxpayers', component: TaxpayersComponent },
   { path: 'taxpayers/:id', component: ViewComponent },

@@ -7,7 +7,6 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { NavberComponent } from './layout/navber/navber.component';
 import { MaterialModule } from './uitools/material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginSignupMenuComponent } from './layout/login-signup-menu/login-signup-menu.component';
 import { SinginComponent } from './pages/singin/singin.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -17,6 +16,7 @@ import { GithubUsersComponent } from './pages/github-users/github-users/github-u
 import { HttpClientModule } from '@angular/common/http';
 import { TaxpayersComponent } from './pages/taxpayers/taxpayers.component';
 import { ViewComponent } from './pages/taxpayers/view/view.component';
+import { TaxesComponent } from './pages/taxes/taxes.component';
 
 
 @NgModule({
@@ -25,14 +25,14 @@ import { ViewComponent } from './pages/taxpayers/view/view.component';
     HeaderComponent,
     FooterComponent,
     NavberComponent,
-    LoginSignupMenuComponent,
     SinginComponent,
     SignupComponent,
     ButtonComponent,
     ProfileComponent,
     GithubUsersComponent,
     TaxpayersComponent,
-    ViewComponent
+    ViewComponent,
+    TaxesComponent
   ],
   imports: [
     BrowserModule,

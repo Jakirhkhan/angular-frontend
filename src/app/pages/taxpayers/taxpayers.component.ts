@@ -1,6 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { config } from 'src/app/config';
+import { AuthService } from 'src/app/service/auth/auth.service';
+import { HttpClientWithAuthorization } from 'src/app/service/auth/http-client-with-authorization';
+import { StorageService } from 'src/app/service/auth/storage.service';
 import { BackendService } from 'src/app/service/no-auth/backend.service';
 import { TaxPayers } from './TaxPayers';
 
@@ -11,11 +15,11 @@ import { TaxPayers } from './TaxPayers';
 })
 export class TaxpayersComponent implements OnInit{
 
+  private url : string = config.apiUrl+'/taxpayers'
   taxPayers: TaxPayers[] = [];
   dataSource: TaxPayers[] = [];
   displayedColumns: string[] = ['id', 'name', 'tin', 'gender','zone','circle','action'];
-  //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-
+  
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngAfterViewInit() {
@@ -23,39 +27,21 @@ export class TaxpayersComponent implements OnInit{
   }
 
   constructor(
-    private taxPayersService:  BackendService
-    ){}
-
+    private taxPayersService:  BackendService,
+    private authService: AuthService,
+    private storageService: StorageService,
+    private httpClientWithAuthorization:HttpClientWithAuthorization
+    ){
+      
+    }
 
   ngOnInit(){
-    this.taxPayersService
-      .getTaxPayers('/taxpayers')
-      .subscribe(data => {
-        console.log(data);
-        this.dataSource = data;
-      });
+
+    this.httpClientWithAuthorization.get<any>(this.url)
+    .subscribe(data=>{
+      console.log(data);
+      this.dataSource = data;
+      
+    });
   }
-
-  
-
 }
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];

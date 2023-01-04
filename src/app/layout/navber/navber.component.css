@@ -1,0 +1,13 @@
+.header-left-menu{
+    width: 50%;
+    float: left;
+}
+
+.header-right-menu{
+    width: auto;
+    float: right;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+  }

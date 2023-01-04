@@ -48,6 +48,12 @@
         </td>
       </ng-container>
 
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" class="center" colspan="9999">No Taxpayer Found!</td>
+    </tr>
+
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
@@ -61,30 +67,6 @@
 </mat-card>
 
 
-<mat-card>
-  <mat-card-header>Tax Payer Lis</mat-card-header>
+<div *ngFor="let item of ">
 
-  <table class="">
-    <tr>
-      <th>#</th>
-      <th>Name</th>
-      <th>Tin</th>
-      <th>Mobile</th>
-      <th>Zone</th>
-      <th>Circle</th>
-      <th>Action</th>
-    </tr>
-    <tr *ngFor="let taxpayer of taxPayers index as i">
-      <td>{{i+1}}</td>
-      <td>{{taxpayer.firstName}} {{taxpayer.lastName}}</td>
-      <td>{{taxpayer.tin}}</td>
-      <td>{{taxpayer.mobileNo}}</td>
-      <td>{{taxpayer.zone}}</td>
-      <td>{{taxpayer.circle}}</td>
-      <td> <a routerLink="/taxpayers/{{taxpayer.id}}">
-        <i>View</i>
-      </a> </td>
-    </tr>
-  </table>
-</mat-card>
-  
+</div>

@@ -27,9 +27,11 @@ export class AuthService {
       console.log(this.loggedIn.asObservable())
       this.loggedIn.next(true);
     }
-    logout() {                           
+    logout() {
+      console.log("----------");
+      this.storageService.clear();
       this.loggedIn.next(false);
-      this.router.navigate(['/login']);
+      this.router.navigate(['/sign-in']);
     }
 
 }

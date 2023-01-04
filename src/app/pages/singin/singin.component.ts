@@ -24,6 +24,7 @@ export class SinginComponent {
   // password = "";
   errorMsg = "";
 
+
   btnLabel : string = "Sign In";
   btnColor : string = "primary";
   btnType : string = "submit";
@@ -38,7 +39,6 @@ export class SinginComponent {
       "password": new FormControl('', Validators.required),
     }
   );
-  matcher = new LoginErrorStateMatcher();
 
   constructor(
     private router: Router,
@@ -48,12 +48,6 @@ export class SinginComponent {
   ){
   }
 
-  ngOnInit(): void {
-    // throw new Error('Method not implemented.');
-    
-  }
-
-
   onSubmit(){
      if(this.loginForm.valid){
 
@@ -62,26 +56,27 @@ export class SinginComponent {
       .subscribe(data => {
         const token = data?.token;
         const roles = data?.roles;
+        const taxpayerid = data?.id;
 
-        console.log("data", data);
+
+        console.log("data", data?.id);
         this.storageService.set("token", token);
 
         this.storageService.set("roles", roles);
+        this.storageService.set("taxpayer-id", taxpayerid);
 
-        // redirect to home
-        //this.router.navigate(["/profile"]);
-
+        // redirect
         let isRoled: boolean = false;
 
-        for (var role of roles) {
-          if ( role === "ROLE_ADMIN"){
-            isRoled = true;
-            this.router.navigate(["/github-user"])
-          }
-        }
-        if(!isRoled){
-          this.router.navigate(["/taxpayers"]);
-        }
+        // for (var role of roles) {
+        //   if ( role === "ROLE_ADMIN"){
+        //     isRoled = true;
+        //     this.router.navigate(["/github-user"])
+        //   }
+        // }
+        // if(!isRoled){
+        //   this.router.navigate(["/taxpayers"]);
+        // }
 
       });
     }
